@@ -21,7 +21,7 @@ class Products extends Component {
     return products.filter(product => {
       if (!search) {
         return (
-          product.age === age ||
+          JSON.stringify(product.age) === age ||
           product.brand === brand ||
           product.skinType === skinType
         );
@@ -39,11 +39,11 @@ class Products extends Component {
     return (
       <div className={style.products}>
         {isLoading && (
-          <div className={style.spinnerContainer}>
+          <div className="spinner-container">
             <img src={spinner} alt="spinner" />
           </div>
         )}
-        {products &&
+        {products.length > 0 &&
           this.filter(products).map(product => {
             return (
               <Product

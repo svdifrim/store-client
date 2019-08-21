@@ -2,12 +2,10 @@ import { GET_PRODUCTS, SET_LOADING_PRODUCTS, GET_PRODUCT } from "../types";
 
 const initialState = {
   products: [],
-  cart: [],
-  product: {},
   isLoading: false
 };
 
-function productsReducer(state = initialState, action) {
+const productsReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_LOADING_PRODUCTS:
       return {
@@ -30,6 +28,6 @@ function productsReducer(state = initialState, action) {
     default:
       return state;
   }
-}
+};
 
 export default productsReducer;

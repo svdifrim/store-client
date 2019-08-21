@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import uuidv4 from "uuid/v4";
 
 //style
 import style from "./productModal.module.css";
@@ -6,11 +7,13 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 
 //redux
 import { connect } from "react-redux";
-import { addProductToCart } from "../../redux/actions/productsActions";
+import { addProductToCart } from "../../redux/actions/cartActions";
 
 const ProductModal = ({ product, modal, toggleModal, addProductToCart }) => {
+  const [userId, setUserId] = useState(uuidv4());
+
   const addToCart = () => {
-    addProductToCart(product.id);
+    addProductToCart(userId, product._id);
   };
 
   return (
@@ -89,13 +92,13 @@ const ProductModal = ({ product, modal, toggleModal, addProductToCart }) => {
 
 const mapStateToProps = state => {
   return {
-    product: state.product
+    product: state.product.product
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    addProductToCart: id => dispatch(addProductToCart(id))
+    addProductToCart: (userId, id) => dispatch(addProductToCart(userId, id))
   };
 };
 

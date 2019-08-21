@@ -5,7 +5,7 @@ const initialState = {
   isLoading: false
 };
 
-function productsReducer(state = initialState, action) {
+const categoriesReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_LOADING_CATEGORIES_UI:
       return {
@@ -23,6 +23,6 @@ function productsReducer(state = initialState, action) {
     default:
       return state;
   }
-}
+};
 
-export default productsReducer;
+export default categoriesReducer;

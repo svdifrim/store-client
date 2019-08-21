@@ -70,7 +70,7 @@ header {
   border: none;
 }
 
-.headerItemsBottom button {
+.buttonCart {
   border: none;
   padding: 0 10px;
   background: var(--blue-color-1);
@@ -83,9 +83,10 @@ header {
   margin-left: 2rem;
   width: 16.5rem;
   transition: background 0.2s ease-in-out;
+  text-decoration: none;
 }
 
-.headerItemsBottom button:hover {
+.buttonCart:hover {
   background: var(--blue-color-2);
 }
 
