@@ -91,7 +91,7 @@ header {
 }
 
 .buttonCount {
-  padding: 1.4rem 1rem;
+  padding: 1.25rem 1rem;
   background: var(--blue-color-2);
   transform: translateX(1rem);
 }
