@@ -9,9 +9,10 @@ export const getUserCart = userId => async dispatch => {
   try {
     const response = await axios.get("/cart", { headers: { user: userId } });
     const { data } = response;
+
     dispatch({
       type: GET_USER_CART,
-      payload: data
+      payload: data[0].products
     });
   } catch (error) {
     console.log(error);

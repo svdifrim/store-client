@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import uuidv4 from "uuid/v4";
+import React from "react";
 
 //spinner
 import spinner from "../../static/spinner.gif";
@@ -17,20 +16,32 @@ const ProductModal = ({
   modal,
   toggleModal,
   addProductToCart,
-  isLoading
+  isLoading,
+  userId
 }) => {
-  const [userId, setUserId] = useState(uuidv4());
-
   const addToCart = () => {
     addProductToCart(userId, product._id);
     localStorage.setItem("userId", userId);
   };
 
-  console.log(isLoading);
+  const totalStars = 5;
+  //set star percentage
+  const starPercentage = (product.rating / totalStars) * 100;
+  //round star percentage
+  const starsPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
+  console.log(starsPercentageRounded);
 
   return (
-    <section className={modal ? style.overlayOpen : style.overlay}>
-      <div className={style.modal}>
+    <section
+      className={modal ? style.overlayOpen : style.overlay}
+      onClick={toggleModal}
+    >
+      <div
+        className={style.modal}
+        onClick={e => {
+          e.stopPropagation();
+        }}
+      >
         <div className={style.modalClose}>
           <span>
             <i className={`fas fa-arrow-left ${style.modalArrow}`} />
@@ -60,11 +71,15 @@ const ProductModal = ({
           <div className={style.colTwo}>
             <div className={style.modalRating}>
               <div className={style.modalStars}>
-                <i className="fas fa-star" />
-                <i className="fas fa-star" />
-                <i className="fas fa-star" />
-                <i className="fas fa-star" />
-                <i className="fas fa-star" />
+                <div className={style.starsOuter}>
+                  <div className={style.starsInner} />
+                </div>
+                <div className={style.emptyStars}>
+                  <div
+                    className={style.fullStars}
+                    style={{ width: starsPercentageRounded }}
+                  />
+                </div>
               </div>
               <div>
                 <span>21 reviews</span>

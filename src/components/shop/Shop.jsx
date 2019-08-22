@@ -11,7 +11,8 @@ const Shop = ({
   search,
   skinType,
   brand,
-  age
+  age,
+  userId
 }) => {
   return (
     <div>
@@ -25,6 +26,7 @@ const Shop = ({
         skinType={skinType}
         brand={brand}
         age={age}
+        userId={userId}
       />
     </div>
   );

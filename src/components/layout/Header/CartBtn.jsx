@@ -15,9 +15,7 @@ const HeaderCart = ({ cart }) => {
         </span>
         <span>MY CART</span>
 
-        <span className={style.buttonCount}>
-          {cart === undefined ? 0 : cart.products.length}
-        </span>
+        <span className={style.buttonCount}>{cart.length}</span>
       </Link>
     </div>
   );

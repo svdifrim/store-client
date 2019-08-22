@@ -34,7 +34,7 @@ class Products extends Component {
   };
 
   render() {
-    const { products, isLoading, toggleModal } = this.props;
+    const { products, isLoading, toggleModal, userId } = this.props;
 
     return (
       <div className={style.products}>
@@ -50,6 +50,7 @@ class Products extends Component {
                 key={product._id}
                 product={product}
                 toggleModal={toggleModal}
+                userId={userId}
               />
             );
           })}

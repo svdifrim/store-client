@@ -12,9 +12,6 @@ import HeaderLogo from "./Logo";
 import styleNav from "../Sidenav/sidenav.module.css";
 import CartBtn from "./CartBtn";
 
-//Redux
-import { connect } from "react-redux";
-
 class Header extends Component {
   state = {
     toggleMobile: false,
@@ -36,7 +33,7 @@ class Header extends Component {
   render() {
     // Destructuring off of this.state
     const { toggleMobile, toggleSearch } = this.state;
-    const cart = this.props.cart[0];
+    const cart = this.props.cart;
 
     return (
       <header className={toggleMobile ? style.headerMobile : ""}>
@@ -104,13 +101,4 @@ class Header extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    cart: state.cart.cart
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  null
-)(Header);
+export default Header;

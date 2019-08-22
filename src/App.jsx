@@ -19,9 +19,15 @@ class App extends Component {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     const userId = localStorage.getItem("userId");
     this.props.getUserCart(userId);
+  }
+
+  componentDidUpdate() {
+    if (this.props.cart) {
+      const cart = this.props.cart ? this.props.cart : [];
+    }
   }
 
   handleSubmit = e => {
@@ -35,7 +41,7 @@ class App extends Component {
           <Header
             handleSubmit={this.handleSubmit}
             handleChange={this.handleChange}
-            // search={this.state.search}
+            cart={this.props.cart}
           />
           <Switch>
             <Route path="/" component={Home} exact />

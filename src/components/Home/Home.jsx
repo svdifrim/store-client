@@ -9,6 +9,9 @@ import { getProducts } from "../../redux/actions/productsActions";
 import { getCategories } from "../../redux/actions/categoriesActions";
 import { getProduct } from "../../redux/actions/productActions";
 
+//
+import uuidv4 from "uuid/v4";
+
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -19,7 +22,8 @@ class Home extends Component {
       age: "Select age",
       toggle: 0,
       modal: false,
-      search: ""
+      search: "",
+      userId: uuidv4()
     };
   }
 
@@ -34,8 +38,8 @@ class Home extends Component {
     });
   };
 
-  toggleModal = id => {
-    this.props.getProduct(id);
+  toggleModal = product => {
+    this.props.getProduct(product);
 
     this.setState({
       modal: !this.state.modal
@@ -68,9 +72,14 @@ class Home extends Component {
             isLoading={this.props.isLoading}
             handleChange={this.handleChange}
             toggleModal={this.toggleModal}
+            userId={this.state.userId}
           />
         </div>
-        <ProductModal modal={this.state.modal} toggleModal={this.toggleModal} />
+        <ProductModal
+          modal={this.state.modal}
+          toggleModal={this.toggleModal}
+          userId={this.state.userId}
+        />
       </div>
     );
   }
