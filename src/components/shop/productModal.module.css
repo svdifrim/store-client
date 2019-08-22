@@ -135,11 +135,12 @@
   margin-top: 2rem;
 }
 
-.modalButtonDetails button {
+.modalButtonMoreDetails {
   background: transparent;
   border: none;
   border-bottom: 1px dashed #b4b4b4;
   color: #b4b4b4;
+  text-decoration: none;
 }
 
 .modalClose {

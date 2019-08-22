@@ -1,5 +1,8 @@
 import React from "react";
 
+//react router
+import { Link } from "react-router-dom";
+
 //spinner
 import spinner from "../../static/spinner.gif";
 
@@ -29,7 +32,6 @@ const ProductModal = ({
   const starPercentage = (product.rating / totalStars) * 100;
   //round star percentage
   const starsPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
-  console.log(starsPercentageRounded);
 
   return (
     <section
@@ -51,11 +53,12 @@ const ProductModal = ({
           </span>
           <div className={style.modalRatingMobile}>
             <div className={style.modalStars}>
-              <i className="fas fa-star" />
-              <i className="fas fa-star" />
-              <i className="fas fa-star" />
-              <i className="fas fa-star" />
-              <i className="fas fa-star" />
+              <div className={style.emptyStars}>
+                <div
+                  className={style.fullStars}
+                  style={{ width: starsPercentageRounded }}
+                />
+              </div>
             </div>
             <div>
               <span>21 reviews</span>
@@ -117,7 +120,9 @@ const ProductModal = ({
           </div>
         </div>
         <div className={style.modalButtonDetails}>
-          <button>More details</button>
+          <Link to={`${product._id}`} className={style.modalButtonMoreDetails}>
+            More details
+          </Link>
         </div>
       </div>
     </section>

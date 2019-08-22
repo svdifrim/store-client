@@ -1,10 +1,13 @@
 import React, { Component } from "react";
+
+//components
 import Header from "./components/layout/Header/Header";
+import Home from "./components/Home/Home";
+import Cart from "./components/Cart/Cart";
+import ProductDetails from "./components/shop/ProductDetails";
 
 //React Router
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Home from "./components/Home/Home";
-import Cart from "./components/Cart/Cart";
 
 //Redux
 import { connect } from "react-redux";
@@ -46,6 +49,7 @@ class App extends Component {
           <Switch>
             <Route path="/" component={Home} exact />
             <Route path="/cart" component={Cart} />
+            <Route path="/:id" component={ProductDetails} />
           </Switch>
         </BrowserRouter>
       </div>

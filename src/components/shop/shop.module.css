@@ -63,16 +63,17 @@
 
 .product {
   flex: 0 0 calc(25% - 1rem);
-  padding-top: 2rem;
-  padding-bottom: 5rem;
+
   border: 1px solid var(--grey-color-1);
   transition: box-shadow 0.2s ease-in-out;
   cursor: pointer;
   text-align: center;
   margin: 0.5rem;
   border-radius: 3px;
-  overflow: hidden;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .product img {
@@ -92,9 +93,7 @@
 .productButton {
   opacity: 0;
   transition: opacity 0.2s ease-in;
-  position: absolute;
   width: 100%;
-  bottom: 0rem;
 }
 
 .productButton button {
@@ -107,7 +106,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 4.2rem;
+  height: 4.5rem;
+}
+
+.product:hover .productButton {
+  opacity: 1;
+  transition: opacity 0.2s ease-in;
 }
 
 .productButton div {
@@ -118,11 +122,6 @@
 .productButton img {
   width: 2.3rem;
   height: 2.3rem;
-}
-
-.product:hover .productButton {
-  opacity: 1;
-  transition: opacity 0.2s ease-in;
 }
 
 @media only screen and (max-width: 768px) {

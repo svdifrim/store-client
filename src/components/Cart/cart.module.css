@@ -1,0 +1,45 @@
+.cartImgContainer img {
+  width: 10rem;
+  height: auto;
+}
+
+.productsContainer {
+  width: 100%;
+}
+
+.cartProduct {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.quantity {
+  display: flex;
+  align-items: center;
+}
+
+.quantity button {
+  padding: 5px 8px;
+}
+
+.quantity span {
+  margin: 0 2rem;
+}
+
+.description {
+  flex: 0 70%;
+}
+
+.deleteButtonContainer button {
+  padding: 1rem 1.8rem;
+  border: none;
+  background: transparent;
+  border-radius: 3px;
+  background-color: #d8000c;
+  color: var(--white-color);
+  transition: background-color 0.2s ease-in-out;
+}
+
+.deleteButtonContainer button:hover {
+  background-color: #bd0009;
+}
