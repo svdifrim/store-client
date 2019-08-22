@@ -1,11 +1,18 @@
-import { ADD_PRODUCT_TO_CART } from "../types";
 import axios from "axios";
+import {
+  GET_USER_CART,
+  SET_LOADING_USER_CART,
+  UNSET_LOADING_USER_CART
+} from "../types";
 
 export const getUserCart = userId => async dispatch => {
   try {
     const response = await axios.get("/cart", { headers: { user: userId } });
     const { data } = response;
-    console.log(data);
+    dispatch({
+      type: GET_USER_CART,
+      payload: data
+    });
   } catch (error) {
     console.log(error);
   }
@@ -13,16 +20,16 @@ export const getUserCart = userId => async dispatch => {
 
 export const addProductToCart = (userId, id) => async dispatch => {
   try {
-    const response = await axios.post(`/cart/${id}`, null, {
+    dispatch({
+      type: SET_LOADING_USER_CART
+    });
+
+    await axios.post(`/cart/${id}`, null, {
       headers: { user: userId }
     });
 
-    const { data } = response;
-    console.log(data);
-
     dispatch({
-      type: ADD_PRODUCT_TO_CART,
-      payload: data
+      type: UNSET_LOADING_USER_CART
     });
   } catch (error) {
     console.log(error);

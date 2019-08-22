@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import uuidv4 from "uuid/v4";
 
+//spinner
+import spinner from "../../static/spinner.gif";
+
 //style
 import style from "./productModal.module.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
@@ -9,12 +12,21 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import { connect } from "react-redux";
 import { addProductToCart } from "../../redux/actions/cartActions";
 
-const ProductModal = ({ product, modal, toggleModal, addProductToCart }) => {
+const ProductModal = ({
+  product,
+  modal,
+  toggleModal,
+  addProductToCart,
+  isLoading
+}) => {
   const [userId, setUserId] = useState(uuidv4());
 
   const addToCart = () => {
     addProductToCart(userId, product._id);
+    localStorage.setItem("userId", userId);
   };
+
+  console.log(isLoading);
 
   return (
     <section className={modal ? style.overlayOpen : style.overlay}>
@@ -68,8 +80,15 @@ const ProductModal = ({ product, modal, toggleModal, addProductToCart }) => {
             <div>
               <div className={style.modalButtonCart}>
                 <button onClick={addToCart}>
-                  <span>Add to cart</span>
-                  <i className={`fas fa-plus ${style.modalButtonCartIcon}`} />
+                  <div>
+                    <span>Add to cart</span>
+                    <i className={`fas fa-plus ${style.modalButtonCartIcon}`} />
+                  </div>
+                  {isLoading && (
+                    <div className={style.modalSpinner}>
+                      <img src={spinner} alt="spinner" />
+                    </div>
+                  )}
                 </button>
               </div>
               <div className={style.modalText}>
@@ -92,7 +111,8 @@ const ProductModal = ({ product, modal, toggleModal, addProductToCart }) => {
 
 const mapStateToProps = state => {
   return {
-    product: state.product.product
+    product: state.product.product,
+    isLoading: state.cart.isLoading
   };
 };
 

@@ -1,4 +1,8 @@
-import { ADD_PRODUCT_TO_CART } from "../types";
+import {
+  GET_USER_CART,
+  SET_LOADING_USER_CART,
+  UNSET_LOADING_USER_CART
+} from "../types";
 
 const initialState = {
   cart: [],
@@ -7,10 +11,20 @@ const initialState = {
 
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_PRODUCT_TO_CART:
+    case SET_LOADING_USER_CART:
       return {
         ...state,
-        cart: [...state.cart, action.payload]
+        isLoading: true
+      };
+    case UNSET_LOADING_USER_CART:
+      return {
+        ...state,
+        isLoading: false
+      };
+    case GET_USER_CART:
+      return {
+        ...state,
+        cart: action.payload
       };
     default:
       return state;

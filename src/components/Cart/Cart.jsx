@@ -1,7 +1,19 @@
 import React from "react";
 
-const Cart = () => {
-  return <div>Cart</div>;
+//Reudx
+import { connect } from "react-redux";
+
+const Cart = ({ cart }) => {
+  return <div>hey you</div>;
 };
 
-export default Cart;
+const mapStateToProps = state => {
+  return {
+    cart: state.cart.cart
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(Cart);

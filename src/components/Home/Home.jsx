@@ -80,8 +80,7 @@ const mapStateToProps = state => {
   return {
     products: state.products.products,
     isLoading: state.products.isLoading,
-    categories: state.categories.categories,
-    cart: state.cart.cart
+    categories: state.categories.categories
   };
 };
 

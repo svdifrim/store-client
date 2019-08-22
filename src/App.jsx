@@ -6,6 +6,10 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "./components/Home/Home";
 import Cart from "./components/Cart/Cart";
 
+//Redux
+import { connect } from "react-redux";
+import { getUserCart } from "./redux/actions/cartActions";
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -15,14 +19,16 @@ class App extends Component {
     };
   }
 
+  componentDidMount() {
+    const userId = localStorage.getItem("userId");
+    this.props.getUserCart(userId);
+  }
+
   handleSubmit = e => {
     e.preventDefault();
   };
 
   render() {
-    // const { length } = this.props.cart.products.length;
-    // console.log(length);
-
     return (
       <div>
         <BrowserRouter>
@@ -41,4 +47,19 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    cart: state.cart.cart
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getUserCart: userId => dispatch(getUserCart(userId))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
